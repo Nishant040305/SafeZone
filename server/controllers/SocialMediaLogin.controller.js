@@ -22,7 +22,7 @@ const googleCallback = (req, res) => {
       name: user?.name,
       _id: user._id,
     },
-    process.env.JWTSECREAT
+    process.env.JWTSECRET
   );
   res.cookie('uid', jwtData, {
     httpOnly: true,
@@ -44,7 +44,7 @@ const GithubRedirect = async (req, res) => {
 const GithubCallback = async (req, res) => {
   const { code } = req.query;
   const client_id = process.env.GITHUB_CLIENT_ID;
-  const client_secret = process.env.GITHUB_CLIENT_SECREAT;
+  const client_secret = process.env.GITHUB_CLIENT_SECRET;
   const redirect_uri = `${process.env.SERVER}/api/auth/github/callback`;
 
   try {
@@ -107,7 +107,7 @@ const GithubCallback = async (req, res) => {
       _id: user?._id,
       createdAt: user?.createdAt,
     };
-    const jwtData = jwtToken.sign(jwtPayload, process.env.JWTSECREAT);
+    const jwtData = jwtToken.sign(jwtPayload, process.env.JWTSECRET);
     res.cookie('uid', jwtData, {
       httpOnly: true,
       secure: true,

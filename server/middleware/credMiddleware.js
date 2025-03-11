@@ -9,7 +9,7 @@ const UserVerifier = async (req, res, next) => {
       return res.status(404).json({ errorMessage: 'User not verified' });
 
     try {
-      const decode = jwtToken.verify(data, process.env.JWTSECREAT);
+      const decode = jwtToken.verify(data, process.env.JWTSECRET);
       delete decode.password;
       req.user = decode;
       next();

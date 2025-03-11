@@ -100,7 +100,7 @@ const VerifyUser = async (req, res) => {
     ).lean();
     delete userUpdate.password;
     delete userUpdate.verify;
-    const jwtData = jwtToken.sign(userUpdate, process.env.JWTSECREAT);
+    const jwtData = jwtToken.sign(userUpdate, process.env.JWTSECRET);
     res.cookie('uid', jwtData, {
       httpOnly: true,
       secure: true,
@@ -138,7 +138,7 @@ const LogIn = async (req, res) => {
     }
     delete user.password;
     delete user.verify;
-    const jwtData = jwtToken.sign(user, process.env.JWTSECREAT);
+    const jwtData = jwtToken.sign(user, process.env.JWTSECRET);
     res.cookie('uid', jwtData, {
       httpOnly: true,
       secure: true,
@@ -209,7 +209,7 @@ const ConfirmPasswordChange = async (req, res) => {
       _id: user._id,
       email: user.email,
     };
-    const jwtData = jwtToken.sign(data, process.env.JWTSECREAT);
+    const jwtData = jwtToken.sign(data, process.env.JWTSECRET);
     res.cookie('uid', jwtData, {
       httpOnly: true,
       secure: true,
