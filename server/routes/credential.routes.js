@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { credController } = require('../controller');
+const { credController } = require('../controllers');
 const credMiddleware = require('../middleware/credMiddleware');
 const { googleLogin } = require('../middleware/googleMiddleware'); // Import the passport configuration
 const {
   googleCallback,
   GithubCallback,
   GithubRedirect,
-} = require('../controller/SocialMediaLogin.controller');
+} = require('../controllers/SocialMediaLogin.controller');
 const User = require('../models/User');
 
 // @routes   GET /api/auth/

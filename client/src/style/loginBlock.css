@@ -1,0 +1,289 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loginBlock {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    /* border-radius: 8px; */
+    padding: 2rem 2rem;
+    width: 100%;
+    max-width: 400px;
+    min-width: 400px;
+    height:100vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .loginBlock.dark-mode {
+    background-color: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  }
+  
+  .heading {
+    font-size: 23px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+    text-align: left;
+    padding:10px;
+    padding-left: 25px;
+    font-family: system-ui;
+  }
+  
+  .loginBlock.dark-mode .heading {
+    color: #f3f4f6;
+  }
+  
+  .subheading {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .loginBlock.dark-mode .subheading {
+    color: #9ca3af;
+  }
+  
+  .input-detail {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 16px;
+    border: 1px solid #9d9d9d7a;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    outline: none;
+    color:#110520;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .input-detail:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+  }
+  
+  .loginBlock.dark-mode .input-detail {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #ffffff;
+  }
+  
+  .loginBlock.dark-mode .input-detail:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  }
+  
+  .enterdetail {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .enterdetail:hover {
+    background-color: #1d4ed8;
+  }
+  .resend{
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #63666e;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .loginBlock.dark-mode .enterdetail {
+    background-color: #4f46e5;
+  }
+  
+  .loginBlock.dark-mode .enterdetail:hover {
+    background-color: #4338ca;
+  }
+  
+  
+  .loginBlock.dark-mode .orsection {
+    color: #9ca3af;
+  }
+  
+  .loginBlock.dark-mode .orsection:before,
+  .loginBlock.dark-mode .orsection:after {
+    background-color: #4b5563;
+  }
+  
+  .special-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .google-signin-button,
+  .github-signin-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .google-signin-button {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #111827;
+  }
+  
+  .google-signin-button:hover {
+    background-color: #f9fafb;
+  }
+  .google-signin-button img{
+    margin-right:5px;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+  }
+  .loginBlock.dark-mode .google-signin-button {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #f3f4f6;
+  }
+  
+  .github-signin-button {
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: #ffffff;
+  }
+  
+  .github-signin-button:hover {
+    background-color: #111111;
+  }
+  
+  .loginBlock.dark-mode .github-signin-button {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  .github-signin-button img{
+    margin-right:5px;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+  }
+  @media screen and (max-width: 768px) {
+    .loginBlock {
+        padding: 1.5rem;
+        max-width:350px;
+    }
+  
+    .heading {
+        font-size: 24px;
+    }
+  
+    .subheading {
+        font-size: 14px;
+    }
+  
+    .input-detail,
+    .enterdetail,
+    .google-signin-button,
+    .github-signin-button {
+        font-size: 14px;
+    }
+  }
+  .head-info{
+    color:#3c3c3c;
+  }
+  .head-info.dark-mode{
+    color:rgb(119, 132, 142);
+  }
+  /* Container styling */
+  .login-changeinfo {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Two equal-width columns */
+    gap: 10px; /* Spacing between rows and columns */
+    padding: 10px;
+    margin-top:20px;
+    margin-left:20px;
+    position: relative;
+    color:#3c3c3c
+  }
+  .login-changeinfo .left{
+    text-align: left;
+  }
+  .login-changeinfo .right{
+    text-align: right;
+    padding-right:10px;
+  }
+  .login-changeinfo.dark-mode {
+    color: rgb(119, 132, 142); /* Light text for contrast */
+  }
+  
+  /* Common styling for items */
+  .login-changeinfo > span {
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  
+  .link-page{
+    color:#4338ca;
+  }
+  .link-page:hover{
+    color:#1d4ed8;
+  }
+  .line{
+    width:30%;
+    height: 2px; /* Vertical thickness of the line */
+    background-color: rgb(138, 139, 136); /* Line color */
+    margin: 0 auto; /* Optional: centers the line */
+  
+  }
+  
+  
+  .orsection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top:10px;
+    margin-bottom:20px;
+    color:#1f2937;
+  }
+  .platform-heading.dark-mode>span{
+    color:rgb(195, 185, 213);
+  
+  }
+  .platform-heading>span{
+    color:rgb(220, 93, 89);
+  
+  }
+  .project-name{
+    display:block;
+  }
+  @media screen and (max-width:768px){
+    .project-name{
+      display:none;
+    }
+  }

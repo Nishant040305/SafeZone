@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const MONGODB_URL =
-  process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/evolution';
+  process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/safezone';
 
 const options = {};
 mongoose.connect(MONGODB_URL, options);

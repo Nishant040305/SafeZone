@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import url from "./url.json";
+import LoginMain from "./container/LoginMain";
+import { verifyUser } from "./Store/userSlice";
+const App = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.userInfo);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    if (!mounted) {
+      dispatch(verifyUser());
+      setMounted(true);
+    } else {
+      if (!isAuthenticated) dispatch(verifyUser());
+    }
+  }, [isAuthenticated, user, mounted]);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Routes>
+      {/* Landing Page */}
+      <Route
+        path={url.LandingPage}
+        element={isAuthenticated ? <div>Landing Page</div> : <LoginMain />}
+      />
+      {/* Login Page */}
+      <Route path={url.Login} element={<LoginMain />} />
+    </Routes>
+  );
+};
 
-export default App
+export default App;
