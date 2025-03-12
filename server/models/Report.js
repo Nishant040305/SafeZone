@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 // Define the User schema
-const UserSchema = new Schema(
+const ReportSchema = new Schema(
   {
     ReporterId: {
       type: Schema.Types.ObjectId,
@@ -57,4 +57,4 @@ const UserSchema = new Schema(
   }
 );
 
-module.exports = model('User', UserSchema);
+module.exports = model('report', ReportSchema);
