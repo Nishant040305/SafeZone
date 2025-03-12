@@ -177,7 +177,7 @@ const LoginBlock = ({ setRegister }) => {
           <img src={icon.google} alt="Google logo" />
           <span>Sign in with Google</span>
         </button>
-        <button
+        {/* <button
           className="github-signin-button"
           onClick={() => {
             window.open(
@@ -190,7 +190,7 @@ const LoginBlock = ({ setRegister }) => {
         >
           <img src={icon.github} alt="GitHub logo" />
           <span>Sign in with GitHub</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );
