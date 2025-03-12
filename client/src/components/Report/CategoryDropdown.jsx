@@ -1,4 +1,4 @@
-export const CategoryDropdown = ({ value, onChange }) => {
+const CategoryDropdown = ({ value, onChange }) => {
   const categories = ["Earthquake", "Flood", "Fire", "Tornado", "Other"];
   return (
     <div className="mb-4">
@@ -19,3 +19,5 @@ export const CategoryDropdown = ({ value, onChange }) => {
     </div>
   );
 };
+
+export default CategoryDropdown;

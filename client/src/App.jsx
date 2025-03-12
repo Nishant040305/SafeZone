@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import url from "./url.json";
 import LoginMain from "./container/LoginMain";
 import { verifyUser } from "./Store/userSlice";
+import ReportForm from "./components/Report/ReportForm";
 const App = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.user);
@@ -22,7 +23,7 @@ const App = () => {
       {/* Landing Page */}
       <Route
         path={url.LandingPage}
-        element={isAuthenticated ? <div>Landing Page</div> : <LoginMain />}
+        element={isAuthenticated ? <ReportForm /> : <LoginMain />}
       />
       {/* Login Page */}
       <Route path={url.Login} element={<LoginMain />} />

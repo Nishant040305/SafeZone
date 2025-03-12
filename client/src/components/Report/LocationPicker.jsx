@@ -1,5 +1,5 @@
 import { useState } from "react";
-export const LocationPicker = ({ onSelect }) => {
+const LocationPicker = ({ onSelect }) => {
   const [location, setLocation] = useState({ lat: "", lng: "" });
 
   const getLocation = () => {
@@ -31,3 +31,5 @@ export const LocationPicker = ({ onSelect }) => {
     </div>
   );
 };
+
+export default LocationPicker;
