@@ -4,7 +4,7 @@ import LocationPicker from "./LocationPicker";
 import FileUploadField from "./FileUploadField";
 import InputField from "./InputField";
 import TextAreaField from "./TextAreaField";
-
+import ReportService from "../scripts/API.Report";
 const ReportForm = () => {
   const [formData, setFormData] = useState({
     category: "",
@@ -14,7 +14,7 @@ const ReportForm = () => {
     longitude: "",
     media: [],
   });
-
+  const Report = new ReportService();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -27,9 +27,18 @@ const ReportForm = () => {
     setFormData({ ...formData, media: files });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await Report.postReport(formData);
     console.log("Submitted Data:", formData);
+    setFormData({
+      category: "",
+      title: "",
+      description: "",
+      latitude: "",
+      longitude: "",
+      media: [],
+    });
   };
 
   return (
