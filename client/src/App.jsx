@@ -10,11 +10,14 @@ import DisplayReports from "./components/Home/DisplayReports";
 import Profile from "./components/Profile/Profile";
 import EditProfile from "./components/Profile/EditProfile";
 import Homepage from "./container/HomePage";
+import SingleReport from "./components/Home/SingleReport";
+
 const App = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.user);
   const user = useSelector((state) => state.user.userInfo);
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     if (!mounted) {
       dispatch(verifyUser());
@@ -48,6 +51,7 @@ const App = () => {
         <Route path={url.createReport} element={<ReportForm />} />
         <Route path={url.profile} element={<Profile user={user} />} />
         <Route path={url.editProfile} element={<EditProfile user={user} />} />
+        <Route path={`/report/:id`} element={<SingleReport />} />
       </Route>
 
       {/* Fallback */}

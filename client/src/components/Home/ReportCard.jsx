@@ -4,9 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 const ReportCard = ({ report }) => {
+  const navigate = useNavigate();
   const { category, title, description, latitude, longitude, media } = report;
+  console.log(report);
 
   const [votes, setVotes] = useState({ up: 0, down: 0 });
 
@@ -25,7 +28,10 @@ const ReportCard = ({ report }) => {
   return (
     <div className="bg-white rounded-2xl shadow-md max-w-md w-full mx-auto border border-gray-200">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div
+        className="flex items-center justify-between p-4 border-b cursor-pointer"
+        onClick={() => navigate(`/report/${report._id}`)}
+      >
         <div>
           <h3 className="font-semibold text-lg">{title}</h3>
           <p className="text-sm text-gray-500">{category}</p>
