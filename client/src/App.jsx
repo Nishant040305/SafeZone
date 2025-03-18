@@ -9,7 +9,6 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import DisplayReports from "./components/Home/DisplayReports";
 import Profile from "./components/Profile/Profile";
 import EditProfile from "./components/Profile/EditProfile";
-import Homepage from "./container/HomePage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,13 @@ const App = () => {
       />
 
       {/* Login Page - only if not logged in */}
-      {!isAuthenticated && <Route path={url.Login} element={<LoginMain />} />}
+      <Route
+        path={url.Login}
+        element={
+          isAuthenticated ? <Navigate to={url.LandingPage} /> : <LoginMain />
+        }
+      />
+      <Route path={url.Logout} element={<Logout />} />
 
       {/* Protected Routes */}
       <Route

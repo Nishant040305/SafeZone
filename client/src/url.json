@@ -1,6 +1,7 @@
 {
   "LandingPage": "/",
   "Login": "/login",
+  "Logout": "/logout",
   "createReport": "/createReport",
   "profile": "/profile",
   "editProfile": "/edit-profile"
