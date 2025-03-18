@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import DisplayReports from "./components/Home/DisplayReports";
 import Profile from "./components/Profile/Profile";
 import EditProfile from "./components/Profile/EditProfile";
+import Logout from "./components/Login/Logout";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const App = () => {
           isAuthenticated ? <Navigate to={url.LandingPage} /> : <LoginMain />
         }
       />
+      <Route path={url.Logout} element={<Logout />} />
 
       {/* Protected Routes */}
       <Route
