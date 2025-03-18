@@ -7,6 +7,8 @@ import { verifyUser } from "./Store/userSlice";
 import ReportForm from "./components/Report/ReportForm";
 import LandingPage from "./components/LandingPage/LandingPage";
 import DisplayReports from "./components/Home/DisplayReports";
+import Profile from "./components/Profile/Profile";
+import EditProfile from "./components/Profile/EditProfile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ const App = () => {
       if (!isAuthenticated) dispatch(verifyUser());
     }
   }, [isAuthenticated, user, mounted]);
+
   return (
     <Routes>
       {/* Landing Page */}
@@ -36,6 +39,9 @@ const App = () => {
         path={url.createReport}
         element={isAuthenticated ? <ReportForm /> : <LandingPage />}
       />
+
+      <Route path="/profile" element={<Profile user={user} />} />
+      <Route path="/edit-profile" element={<EditProfile user={user} />} />
 
       <Route path="*" element={<LandingPage />} />
     </Routes>
