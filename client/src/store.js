@@ -22,7 +22,7 @@ const userPersistConfig = {
 const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer), // Apply persist for user slice
   mode: darkLightSlice, // Persist dark/light mode
-  report: reportReducer,
+  reports: reportReducer,
 });
 
 // Wrap rootReducer with persistReducer

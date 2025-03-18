@@ -29,7 +29,6 @@ const ReportForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Hello");
     await Report.postReport(formData);
     console.log("Submitted Data:", formData);
     setFormData({

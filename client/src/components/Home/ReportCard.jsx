@@ -6,8 +6,8 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 
 const ReportCard = ({ report }) => {
-  const { category, title, description, latitude, longitude, media } = report;
-
+  const { category, title, description, location, media } = report;
+  const { latitude, longitude } = location;
   const [votes, setVotes] = useState({ up: 0, down: 0 });
 
   const handleUpvote = () => setVotes((prev) => ({ ...prev, up: prev.up + 1 }));
