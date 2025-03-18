@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import url from "./url.json";
 import LoginMain from "./container/LoginMain";
@@ -31,19 +31,26 @@ const App = () => {
         path={url.LandingPage}
         element={isAuthenticated ? <DisplayReports /> : <LandingPage />}
       />
-      {/* Login Page */}
-      <Route path={url.Login} element={<LoginMain />} />
 
-      {/* Report Form */}
+      {/* Login Page - only if not logged in */}
+      {!isAuthenticated && <Route path={url.Login} element={<LoginMain />} />}
+
+      {/* Protected Routes */}
       <Route
-        path={url.createReport}
-        element={isAuthenticated ? <ReportForm /> : <LandingPage />}
+        element={
+          isAuthenticated ? <Outlet /> : <Navigate to={url.LandingPage} />
+        }
+      >
+        <Route path={url.createReport} element={<ReportForm />} />
+        <Route path={url.profile} element={<Profile user={user} />} />
+        <Route path={url.editProfile} element={<EditProfile user={user} />} />
+      </Route>
+
+      {/* Fallback */}
+      <Route
+        path="*"
+        element={isAuthenticated ? <DisplayReports /> : <LandingPage />}
       />
-
-      <Route path="/profile" element={<Profile user={user} />} />
-      <Route path="/edit-profile" element={<EditProfile user={user} />} />
-
-      <Route path="*" element={<LandingPage />} />
     </Routes>
   );
 };
