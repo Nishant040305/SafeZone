@@ -9,8 +9,12 @@
       "verify": "/api/auth/",
       "logout": "/api/auth/logout"
     },
-    "Image": {
-      "ImageUpload": "/api/image/imageUpload"
+    "Report": {
+      "getReports": "/api/report/getReports",
+      "postReport": "/api/report/postReport"
+    },
+    "Media":{
+      "uploadMedia": "/api/media/uploadMedia"
     }
   }
   
