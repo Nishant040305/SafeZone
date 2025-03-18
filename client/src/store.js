@@ -3,7 +3,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // Uses localStorage
 import userReducer from "./Store/userSlice";
 import darkLightSlice from "./Store/darkLightMode";
-
+import reportReducer from "./Store/reportSlice";
 //  Configure Persistence for Select Reducers
 const persistConfig = {
   key: "root",
@@ -22,6 +22,7 @@ const userPersistConfig = {
 const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer), // Apply persist for user slice
   mode: darkLightSlice, // Persist dark/light mode
+  report: reportReducer,
 });
 
 // Wrap rootReducer with persistReducer

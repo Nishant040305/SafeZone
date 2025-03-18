@@ -32,7 +32,7 @@ const uploadToCloudinary = (file, resourceType, folder) => {
   });
 };
 
-const ImageUpload = (file) => uploadToCloudinary(file, 'image', 'Evolution');
-const VideoUpload = (file) => uploadToCloudinary(file, 'video', 'Evolution');
+const ImageUpload = (file) => uploadToCloudinary(file, 'image', 'SafeZone');
+const VideoUpload = (file) => uploadToCloudinary(file, 'video', 'SafeZone');
 
 module.exports = { ImageUpload, VideoUpload };

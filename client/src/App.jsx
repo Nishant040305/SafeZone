@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import DisplayReports from "./components/Home/DisplayReports";
 import Profile from "./components/Profile/Profile";
 import EditProfile from "./components/Profile/EditProfile";
+import Homepage from "./container/HomePage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const App = () => {
       {/* Landing Page */}
       <Route
         path={url.LandingPage}
-        element={isAuthenticated ? <DisplayReports /> : <LandingPage />}
+        element={isAuthenticated ? <Homepage /> : <LandingPage />}
       />
 
       {/* Login Page - only if not logged in */}

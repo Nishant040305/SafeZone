@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
-// Define the User schema
+
+// Define the Report schema
 const ReportSchema = new Schema(
   {
     ReporterId: {
@@ -17,19 +18,21 @@ const ReportSchema = new Schema(
     },
     title: {
       type: String,
-      requried: true,
+      required: true,
     },
     location: {
-      type: {
-        latitute: {
-          type: Number,
-          required: true,
-        },
-        longitude: {
-          type: Number,
-          required: true,
-        },
+      latitude: {
+        type: Number,
+        required: true,
       },
+      longitude: {
+        type: Number,
+        required: true,
+      },
+    },
+    media: {
+      type: [String],
+      default: [],
     },
     upvotes: {
       type: Number,
@@ -47,14 +50,10 @@ const ReportSchema = new Schema(
       type: Object,
       default: {},
     },
-    Time: {
-      type: Date,
-      default: Date.now,
-    },
   },
   {
-    timestamps: true, // Automatically adds createdAt and updatedAt
+    timestamps: true,
   }
 );
 
-module.exports = model('report', ReportSchema);
+module.exports = model('Report', ReportSchema);

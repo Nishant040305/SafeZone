@@ -4,7 +4,7 @@ import LocationPicker from "./LocationPicker";
 import FileUploadField from "./FileUploadField";
 import InputField from "./InputField";
 import TextAreaField from "./TextAreaField";
-import ReportService from "../scripts/API.Report";
+import ReportService from "../../scripts/API.Report";
 const ReportForm = () => {
   const [formData, setFormData] = useState({
     category: "",
@@ -29,6 +29,7 @@ const ReportForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Hello");
     await Report.postReport(formData);
     console.log("Submitted Data:", formData);
     setFormData({

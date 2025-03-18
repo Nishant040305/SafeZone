@@ -1,4 +1,5 @@
 const express = require('express');
+const { UserVerifier } = require('../middleware/credMiddleware');
 const router = express.Router();
 const {
   ReportSubmission,
@@ -7,7 +8,7 @@ const {
 
 //@ POST /api/report/postReport
 // submit reports
-router.post('/postReport', ReportSubmission);
+router.post('/postReport', UserVerifier, ReportSubmission);
 
 //@ GET /api/report/getReports?page=<PAGE>
 // get reports

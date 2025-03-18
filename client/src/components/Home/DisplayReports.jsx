@@ -1,47 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import ReportCard from "./ReportCard";
 
 const DisplayReports = () => {
   const [reports, setReports] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const loader = useRef(null);
+
+  const fetchReports = useCallback(async () => {
+    if (!hasMore) return;
+
+    try {
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_REACT_APP_BACKWEB
+        }/api/report/getReports?page=${page}&limit=10`
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        setReports((prevReports) => [...prevReports, ...data.reports]); // Append new reports
+        setHasMore(data.hasMore);
+        setPage((prevPage) => prevPage + 1);
+      } else {
+        console.error("Error fetching reports:", data.message);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  }, [page, hasMore]);
 
   useEffect(() => {
-    const fetchReports = async () => {
-      const dummyData = [
-        {
-          category: "Flood",
-          title: "Flood in Area 9",
-          description: "Heavy rain causing major water logging.",
-          latitude: "28.7041",
-          longitude: "77.1025",
-          media: [
-            // Images
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://images.unsplash.com/photo-1619023666077-9c1deec19f0b",
-            // Videos
-            "https://www.w3schools.com/html/mov_bbb.mp4",
-            "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
-          ],
-        },
-        {
-          category: "Fire",
-          title: "Warehouse Fire",
-          description: "Massive fire in Mumbai suburb area.",
-          latitude: "19.0760",
-          longitude: "72.8777",
-          media: [
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://www.w3schools.com/html/mov_bbb.mp4",
-            "https://www.w3schools.com/html/movie.mp4",
-          ],
-        },
-      ];
-      setReports(dummyData);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          fetchReports();
+        }
+      },
+      { threshold: 1.0 }
+    );
 
-    fetchReports();
-  }, []);
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
+
+    return () => observer.disconnect();
+  }, [fetchReports]);
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 px-4 md:px-8">
@@ -51,6 +55,11 @@ const DisplayReports = () => {
           <ReportCard key={index} report={report} />
         ))}
       </div>
+      {hasMore && (
+        <div ref={loader} className="text-center py-4">
+          Loading more reports...
+        </div>
+      )}
     </div>
   );
 };

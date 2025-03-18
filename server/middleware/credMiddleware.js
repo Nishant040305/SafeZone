@@ -12,6 +12,7 @@ const UserVerifier = async (req, res, next) => {
       const decode = jwtToken.verify(data, process.env.JWTSECRET);
       delete decode.password;
       req.user = decode;
+      console.log(req.user);
       next();
     } catch (err) {
       res.status(400).json({
