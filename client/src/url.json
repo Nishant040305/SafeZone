@@ -1,5 +1,5 @@
 {
-    "LandingPage": "/",
-    "Login": "/login"
-  }
-  
+  "LandingPage": "/",
+  "Login": "/login",
+  "createReport": "/createReport"
+}
