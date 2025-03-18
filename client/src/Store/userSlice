@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { UserVerify } from '../scripts/UserAuth';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { UserVerify } from "../scripts/UserAuth";
 
 // Define initial state
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
 
 // Async thunk for user verification
 export const verifyUser = createAsyncThunk(
-  'user/verifyUser',
+  "user/verifyUser",
   async (_, { getState, rejectWithValue }) => {
     try {
       const { user } = getState();
@@ -23,18 +23,18 @@ export const verifyUser = createAsyncThunk(
       }
 
       const info = await UserVerify(); // Assume this fetches user data
-      if (!info) throw new Error('User not authenticated');
+      if (!info) throw new Error("User not authenticated");
 
       return info;
     } catch (error) {
-      return rejectWithValue(error.message || 'Verification failed');
+      return rejectWithValue(error.message || "Verification failed");
     }
   }
 );
 
 // Create a slice
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     loginSuccess: (state, action) => {

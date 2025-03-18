@@ -91,6 +91,7 @@ class ReportService {
       );
 
       if (response.status !== 201) throw new Error("Failed to submit report");
+      alert("Report submitted successfully");
       return response.data;
     } catch (error) {
       console.error("Error submitting report:", error);
