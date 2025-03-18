@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+// src/components/DisplayReports.jsx
+import React, { useEffect, useRef, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setReports } from "../../Store/reportSlice"; // Adjust path
 import ReportCard from "./ReportCard";
 
 const DisplayReports = () => {
-  const [reports, setReports] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
+  const dispatch = useDispatch();
+  const { reports, page, hasMore } = useSelector((state) => state.reports); // Access Redux state
   const loader = useRef(null);
 
   const fetchReports = useCallback(async () => {
@@ -14,21 +16,19 @@ const DisplayReports = () => {
       const response = await fetch(
         `${
           import.meta.env.VITE_REACT_APP_BACKWEB
-        }/api/report/getReports?page=${page}&limit=10`
+        }/api/report/getReports?page=${page}&limit=20`
       );
       const data = await response.json();
 
       if (response.ok) {
-        setReports((prevReports) => [...prevReports, ...data.reports]); // Append new reports
-        setHasMore(data.hasMore);
-        setPage((prevPage) => prevPage + 1);
+        dispatch(setReports({ reports: data.reports, hasMore: data.hasMore }));
       } else {
         console.error("Error fetching reports:", data.message);
       }
     } catch (error) {
       console.error("Network error:", error);
     }
-  }, [page, hasMore]);
+  }, [dispatch, page, hasMore]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

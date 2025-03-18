@@ -73,8 +73,10 @@ class ReportService {
           this.uploadMedia(file)
         );
         mediaURLs = await Promise.all(uploadPromises);
+      } else {
+        aleart("Add some supporting images/videos");
+        return;
       }
-
       // Send report data with uploaded media URLs
       const response = await axios.post(
         `${this.baseURL}${this.server.Report.postReport}`,
