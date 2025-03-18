@@ -14,12 +14,9 @@ const DisplayReports = () => {
           latitude: "28.7041",
           longitude: "77.1025",
           media: [
-            // Images
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://images.unsplash.com/photo-1619023666077-9c1deec19f0b",
-            // Videos
-            "https://www.w3schools.com/html/mov_bbb.mp4",
-            "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+            // Images related to floods
+            "https://images.unsplash.com/photo-1617494532490-297fc0eb515e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           ],
         },
         {
@@ -29,11 +26,8 @@ const DisplayReports = () => {
           latitude: "19.0760",
           longitude: "72.8777",
           media: [
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-            "https://www.w3schools.com/html/mov_bbb.mp4",
-            "https://www.w3schools.com/html/movie.mp4",
+            "https://media.istockphoto.com/id/172322795/photo/windblown-house-fire.jpg?s=612x612&w=0&k=20&c=nd776xndDhwgxgkgR8YaUaBQbRXrjVWSLKmKhobX2c8=",
+            "https://media.istockphoto.com/id/182148949/photo/warehouse-fire.jpg?s=2048x2048&w=is&k=20&c=MlC_JxG8gPjBHRJohrzL4R0bySVDIt3aaR9TzIUPcAg=",
           ],
         },
       ];

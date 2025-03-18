@@ -33,7 +33,12 @@ const App = () => {
       />
 
       {/* Login Page - only if not logged in */}
-      {!isAuthenticated && <Route path={url.Login} element={<LoginMain />} />}
+      <Route
+        path={url.Login}
+        element={
+          isAuthenticated ? <Navigate to={url.LandingPage} /> : <LoginMain />
+        }
+      />
 
       {/* Protected Routes */}
       <Route
