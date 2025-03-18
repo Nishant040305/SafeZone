@@ -8,14 +8,7 @@ const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB size limit
   fileFilter: (req, file, cb) => {
-    const allowedTypes = [
-      'image/jpeg',
-      'image/png',
-      'image/webp',
-      'video/mp4',
-      'video/mov',
-      'video/avi',
-    ];
+    const allowedTypes = ['image/jpeg', 'image/png', 'video/mp4'];
     if (allowedTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -37,8 +30,13 @@ const handleFileUploadErrors = (err, req, res, next) => {
   }
   next();
 };
-
-// Route to handle media uploads
-router.post('/media', mediaUpload, handleFileUploadErrors, MediaUploadProject);
+// @POST /api/media/uploadMedia
+// Route to handle media upload
+router.post(
+  '/uploadMedia',
+  mediaUpload,
+  handleFileUploadErrors,
+  MediaUploadProject
+);
 
 module.exports = router;
