@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeZone: Disaster Information Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>SafeZone</h1>
+        <div class="tagline">Your Trusted Disaster Information Hub</div>
+        <p class="intro">
+            Empowering you with <span class="highlight">real-time disaster alerts</span>, 
+            <span class="highlight">expert safety resources</span>, and 
+            <span class="highlight">community-powered insights</span> 
+            to stay ahead of emergencies and protect what matters most.
+        </p>
+
+        <div class="info-section">
+            <h2>Why SafeZone?</h2>
+            <p>
+                Disasters strike without warning, but preparation saves lives. SafeZone delivers critical updates 
+                from trusted sources, personalized safety plans, and a platform for communities to collaborate 
+                during crises. Whether it's earthquakes, floods, or wildfires, we've got you covered.
+            </p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>Instant Alerts</h3>
+                <p>
+                    Receive live notifications tailored to your location—earthquake warnings, flood alerts, 
+                    and more—delivered in seconds via our advanced monitoring system.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Safety Resources</h3>
+                <p>
+                    Access detailed guides, evacuation routes, and survival tips curated by disaster experts 
+                    to keep you and your family safe before, during, and after a crisis.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3>Community Network</h3>
+                <p>
+                    Share real-time updates, request help, or offer support through our secure, user-driven 
+                    platform—because together, we're stronger in any disaster.
+                </p>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="redirectToClient()">
+            Join SafeZone Today
+        </button>
+
+        <div class="footer">
+            Powered by Ctrl+Alt+Elite • Designed for Resilience • Last Updated: March 11, 2025
+        </div>
+    </div>
+    
+    <script src="script.js">
+        window.CLIENT_URL = "<%= process.env.CLIENT %>";
+    </script>
+    </body>
+</html>
