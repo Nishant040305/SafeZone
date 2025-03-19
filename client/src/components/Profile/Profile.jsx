@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { Phone, Pencil } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 import MyReports from "./MyReports";
@@ -8,31 +8,40 @@ const Profile = ({ user }) => {
 
   return (
     <div>
-      <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
-        <div className="flex flex-col items-center">
-          <img
-            src={user.avatar}
-            alt="avatar"
-            className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
-          />
-          <h2 className="mt-4 text-xl font-semibold">{user.name}</h2>
-          <div className="text-gray-600">@{user.displayname}</div>
-          <div className="text-sm text-gray-500">{user.email}</div>
-          <div className="text-sm text-gray-500">
-            <p className="flex">
-              <Phone /> {user.phone || "+ Add Phone Number"}
-            </p>
+      <div className="max-w-md mx-auto p-6 w-[90vw] mt-10 bg-white rounded-xl shadow-md">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-6 md:gap-12">
+          {/* Avatar Section */}
+          <div className="flex-shrink-0">
+            <img
+              src={user.avatar}
+              alt="avatar"
+              className="w-24 h-24 sm:w-30 sm:h-30 rounded-full object-cover border-2 border-gray-300"
+            />
           </div>
 
-          <Link
-            to="/edit-profile"
-            className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            Edit Profile
-          </Link>
+          {/* User Info Section */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg font-semibold truncate">{user.name}</h2>
+              {/* Edit Profile Button */}
+              <Link to="/edit-profile" className="text-blue-600">
+                <Pencil size={15} className="cursor-pointer" />
+              </Link>
+            </div>
+            <div className="text-gray-600 truncate">@{user.displayname}</div>
+            <div className="text-sm text-gray-500 truncate">{user.email}</div>
+
+            {/* Phone Info */}
+            <div className="text-sm text-gray-500 flex items-center gap-2 mt-1">
+              <Phone size={16} />
+              {user.phone || "+ Add Phone Number"}
+            </div>
+          </div>
         </div>
       </div>
-      <div>
+
+      {/* Reports Section */}
+      <div className="mt-6">
         <MyReports />
       </div>
     </div>
