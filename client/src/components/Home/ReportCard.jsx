@@ -7,9 +7,7 @@ import { Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 const ReportCard = ({ report }) => {
-  // const navigate = useNavigate();
-  // const { category, title, description, latitude, longitude, media } = report;
-  // console.log(report);
+  const navigate = useNavigate();
 
   const { category, title, description, location, media } = report;
   const { latitude, longitude } = location;
