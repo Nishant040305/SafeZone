@@ -5,7 +5,10 @@ import FileUploadField from "./FileUploadField";
 import InputField from "./InputField";
 import TextAreaField from "./TextAreaField";
 import ReportService from "../../scripts/API.Report";
+import { useNavigate } from "react-router-dom";
+
 const ReportForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     category: "",
     title: "",
@@ -39,6 +42,7 @@ const ReportForm = () => {
       longitude: "",
       media: [],
     });
+    navigate("/");
   };
 
   return (

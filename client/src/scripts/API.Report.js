@@ -74,7 +74,7 @@ class ReportService {
         );
         mediaURLs = await Promise.all(uploadPromises);
       } else {
-        aleart("Add some supporting images/videos");
+        alert("Add some supporting images/videos");
         return;
       }
       // Send report data with uploaded media URLs
