@@ -1,5 +1,7 @@
 const Report = require('../models/Report');
 const mongoose = require('mongoose');
+const NotificationService = require('../utils/NotificationService');
+
 const ReportSubmission = async (req, res) => {
   const { title, description, latitude, longitude, media, category } = req.body;
 
@@ -27,6 +29,15 @@ const ReportSubmission = async (req, res) => {
 
   try {
     const savedReport = await report.save();
+
+    // Get Socket.io instance from app
+    const io = req.app.get('io');
+
+    // Trigger notifications in the background (non-blocking)
+    NotificationService.notifyNearbyUsers(io, savedReport).catch((err) =>
+      console.error('Error sending notifications:', err)
+    );
+
     res.status(201).json(savedReport);
   } catch (error) {
     res
