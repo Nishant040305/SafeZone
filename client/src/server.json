@@ -11,7 +11,9 @@
     },
     "Report": {
       "getReports": "/api/report/getReports",
-      "postReport": "/api/report/postReport"
+      "postReport": "/api/report/postReport",
+      "getSingleReport": "/api/report/getSingleReport",
+      "vote": "/api/report/vote"
     },
     "Media":{
       "uploadMedia": "/api/media/uploadMedia"

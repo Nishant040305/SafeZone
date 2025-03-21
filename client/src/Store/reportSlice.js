@@ -2,19 +2,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Load initial state from sessionStorage if available
-const loadStateFromSession = () => {
-  const savedState = sessionStorage.getItem("reportState");
-  return savedState
-    ? JSON.parse(savedState)
-    : {
-        reports: [],
-        page: 1,
-        hasMore: true,
-      };
+// const loadStateFromSession = () => {
+//   const savedState = sessionStorage.getItem("reportState");
+//   return savedState
+//     ? JSON.parse(savedState)
+//     : {
+//         reports: [],
+//         page: 1,
+//         hasMore: true,
+//       };
+// };
+
+// const initialState = loadStateFromSession();
+
+const initialState = {
+  reports: [],
+  page: 1,
+  hasMore: true,
 };
-
-const initialState = loadStateFromSession();
-
 const reportSlice = createSlice({
   name: "reports",
   initialState,

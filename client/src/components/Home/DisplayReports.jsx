@@ -19,7 +19,6 @@ const DisplayReports = () => {
         }/api/report/getReports?page=${page}&limit=20`
       );
       const data = await response.json();
-
       if (response.ok) {
         dispatch(setReports({ reports: data.reports, hasMore: data.hasMore }));
       } else {

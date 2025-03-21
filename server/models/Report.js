@@ -42,6 +42,8 @@ const ReportSchema = new Schema(
       type: Number,
       default: 0,
     },
+    upvotedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    downvotedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     status: {
       type: String,
       default: 'pending',

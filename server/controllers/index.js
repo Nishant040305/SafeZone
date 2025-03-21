@@ -1,6 +1,6 @@
 const credController = require('./credential.controller');
-const ReportSubmission = require('./Report.controller');
+const ReportController = require('./Report.controller');
 module.exports = {
   credController,
-  ReportSubmission,
+  ReportController,
 };

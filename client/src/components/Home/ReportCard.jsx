@@ -5,26 +5,47 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { updateVotes } from "../../scripts/reportService";
 
 const ReportCard = ({ report }) => {
   const navigate = useNavigate();
-
-  const { category, title, description, location, media } = report;
+  const userId = useSelector((state) => state.user.userInfo._id);
+  const {
+    category,
+    title,
+    description,
+    location,
+    media,
+    upvotes,
+    downvotes,
+    upvotedBy,
+    downvotedBy,
+    status,
+  } = report;
   const { latitude, longitude } = location;
 
-  const [votes, setVotes] = useState({ up: 0, down: 0 });
-
-  const handleUpvote = () => setVotes((prev) => ({ ...prev, up: prev.up + 1 }));
-  const handleDownvote = () =>
-    setVotes((prev) => ({ ...prev, down: prev.down + 1 }));
-
   const isVideo = (url) => /\.(mp4|webm|ogg)$/i.test(url);
-  const isImage = (url) => !isVideo(url); // treat all non-video URLs as images
+  const isImage = (url) => !isVideo(url);
 
-  // Sort media: images first, then videos
+  const handleVote = async (type) => {
+    const id = report._id;
+    const updatedReport = await updateVotes(id, type);
+    // setReport(updatedReport);
+  };
+
   const images = media.filter(isImage);
   const videos = media.filter(isVideo);
   const sortedMedia = [...images, ...videos];
+  const userUpvoted = upvotedBy.includes(userId);
+  const userDownvoted = downvotedBy.includes(userId);
+
+  const statusColors = {
+    pending: "bg-yellow-100 text-yellow-800",
+    verified: "bg-blue-100 text-blue-800",
+    resolved: "bg-green-100 text-green-800",
+    rejected: "bg-red-100 text-red-800",
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-md max-w-md w-full mx-auto border border-gray-200">
@@ -37,9 +58,11 @@ const ReportCard = ({ report }) => {
           <h3 className="font-semibold text-lg">{title}</h3>
           <p className="text-sm text-gray-500">{category}</p>
         </div>
-        <span className="text-xs text-gray-400">
-          📍 {latitude}, {longitude}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-gray-400">
+            📍 {latitude.toFixed(2)}, {longitude.toFixed(2)}
+          </span>
+        </div>
       </div>
 
       {/* Swiper Media Carousel */}
@@ -78,19 +101,30 @@ const ReportCard = ({ report }) => {
       <div className="p-4">
         <p className="text-sm text-gray-700 mb-2">{description}</p>
 
-        <div className="flex items-center gap-4 mt-4">
+        <div className="flex gap-4 mt-2">
           <button
-            onClick={handleUpvote}
-            className="flex items-center gap-1 text-green-600 hover:text-green-800"
+            onClick={() => handleVote("upvote")}
+            className={`flex items-center gap-1 ${
+              userUpvoted ? "text-green-600 font-bold" : "text-gray-600"
+            }`}
           >
-            <ThumbsUp size={18} /> {votes.up}
+            <ThumbsUp size={18} /> {upvotes}
           </button>
           <button
-            onClick={handleDownvote}
-            className="flex items-center gap-1 text-red-600 hover:text-red-800"
+            onClick={() => handleVote("downvote")}
+            className={`flex items-center gap-1 ${
+              userDownvoted ? "text-red-600 font-bold" : "text-gray-600"
+            }`}
           >
-            <ThumbsDown size={18} /> {votes.down}
+            <ThumbsDown size={18} /> {downvotes}
           </button>
+          <span
+            className={`text-xs px-2 py-1 rounded-full ${
+              statusColors[status] || "bg-gray-100 text-gray-800"
+            }`}
+          >
+            {status.charAt(0).toUpperCase() + status.slice(1)}
+          </span>
         </div>
       </div>
     </div>
