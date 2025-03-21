@@ -40,7 +40,8 @@ const UserSchema = new Schema(
       },
       coordinates: {
         type: [Number], // [longitude, latitude] - GeoJSON format
-        default: [0, 0],
+        default: [25, 81],
+        index: '2dsphere',
       },
       lastUpdated: {
         type: Date,

@@ -3,10 +3,16 @@ const nodemailer = require('nodemailer');
 
 // Configure email transporter
 const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE || 'gmail',
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL,
+    pass: process.env.PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 
@@ -20,8 +26,12 @@ class NotificationService {
   async findNearbyUsers(location, radiusKm = 10) {
     try {
       // Convert kilometers to radians (Earth's radius is approx. 6371 km)
+      console.log(radiusKm);
       const radiusInRadians = radiusKm / 6371;
-
+      console.log('L:' + location.longitude);
+      console.log('L:' + location.latitude);
+      const all = await User.find();
+      console.log(all);
       // Find users within the radius using MongoDB's $geoWithin operator
       const nearbyUsers = await User.find({
         location: {
@@ -33,7 +43,7 @@ class NotificationService {
           },
         },
       });
-
+      console.log(nearbyUsers);
       return nearbyUsers;
     } catch (error) {
       console.error('Error finding nearby users:', error);
