@@ -29,6 +29,9 @@ const io = new Server(server, {
 });
 socketHandlers(io);
 
+// Make io available to controllers
+app.set('io', io);
+
 app.use(
   cors({
     origin: process.env.CLIENT || 'http://localhost:5173',

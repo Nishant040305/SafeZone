@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setReports } from "../../Store/reportSlice"; // Adjust path
 import ReportCard from "./ReportCard";
+import LocationTracker from "../../hooks/LocationTracker";
 
 const DisplayReports = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const DisplayReports = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 px-4 md:px-8">
+      <LocationTracker />
       <h1 className="text-2xl font-bold mb-6">📢 Recent Reports</h1>
       <div className="flex flex-col gap-6">
         {reports.map((report, index) => (

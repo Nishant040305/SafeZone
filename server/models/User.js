@@ -30,10 +30,36 @@ const UserSchema = new Schema(
       type: String,
       default: '',
     },
+
+    // Location tracking
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        default: 'Point',
+      },
+      coordinates: {
+        type: [Number], // [longitude, latitude] - GeoJSON format
+        default: [0, 0],
+      },
+      lastUpdated: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+    notificationPreferences: {
+      email: { type: Boolean, default: true },
+      sms: { type: Boolean, default: true },
+      push: { type: Boolean, default: true },
+      radius: { type: Number, default: 10 },
+    },
   },
   {
     timestamps: true, // Automatically adds createdAt and updatedAt
   }
 );
+
+// Geospatial index on the location field for efficient queries
+UserSchema.index({ location: '2dsphere' });
 
 module.exports = model('User', UserSchema);
